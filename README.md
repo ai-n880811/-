@@ -49,7 +49,7 @@ Eclipseを起動
 
 クローンしたフォルダ（例：cafe-console）を指定
 
-Main.java を右クリック → 「実行」→「Java アプリケーション」
+CafeApp.java を右クリック → 「実行」→「Java アプリケーション」
 
 
 ## 作成者情報
