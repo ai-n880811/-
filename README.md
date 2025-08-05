@@ -6,7 +6,8 @@
 
 
 ## デモンストレーション
-![カフェアプリのデモ]([https://github.com/ai-n880811/CafeApp/raw/main/カフェアプリ-コンソール版－デモンストレーション.gif](https://github.com/ai-n880811/Console-Version-of-Cafe-App/blob/main/%E3%82%AB%E3%83%95%E3%82%A7%E3%82%A2%E3%83%97%E3%83%AA-%E3%82%B3%E3%83%B3%E3%82%BD%E3%83%BC%E3%83%AB%E7%89%88%EF%BC%8D%E3%83%87%E3%83%A2%E3%83%B3%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3.gif))
+![カフェアプリのデモ](https://github.com/ai-n880811/Console-Version-of-Cafe-App/raw/main/カフェアプリ-コンソール版－デモンストレーション.gif)
+
 
 
 
