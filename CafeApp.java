@@ -6,12 +6,16 @@ public class CafeApp {
 
     private static List<CartItem> cart = new ArrayList<>();
 
+    // アプリの起動時に呼び出されるメインメソッド
+    // メニュー表示 → 注文受付 → 合計金額表示 の順に処理する
     public static void main(String[] args) {
-        printMenu();
-        order();
-        printTotal();
+    	printMenu();   // メニューを表示
+    	order();       // 注文処理（ユーザーからの入力受付）
+    	printTotal();  // 注文内容と合計金額を表示
     }
 
+
+    //メニューの表示
     public static void printMenu() {
         System.out.println("--- カフェメニュー ---");
         System.out.println("[1] カフェラテ 450円");
@@ -25,6 +29,7 @@ public class CafeApp {
         boolean endFlag = true;
         int count = 0;
 
+        //商品入力の受け取り
         while (endFlag) {
             System.out.print("商品番号を入力してください（終了は 0 ）:");
             int input;
@@ -40,6 +45,7 @@ public class CafeApp {
                 break;
             }
 
+            //入力された番号の商品(MenuItem)のインスタンスを生成
             MenuItem selectedItem = null;
             switch (input) {
                 case 1: selectedItem = new MenuItem(1, "カフェラテ", 450, "drink"); break;
@@ -51,6 +57,7 @@ public class CafeApp {
                     continue;
             }
 
+            //カート内に同じ商品があったら、数量を１つ増やす
             boolean found = false;
             for (CartItem ci : cart) {
                 if (ci.getItem().getId() == selectedItem.getId()) {
@@ -60,6 +67,7 @@ public class CafeApp {
                 }
             }
 
+            //カート内に商品がなかったら、カートに新しく追加する
             if (!found) {
                 cart.add(new CartItem(selectedItem));
             }
@@ -67,6 +75,7 @@ public class CafeApp {
             System.out.println(selectedItem.getName() + " をカートに追加しました");
 
           
+          //注文を1件追加するたびにカウントを1増やし、5件ごとに無料ドリンク
             count++;
             if (count == 5) {
                 freeDrink(sc);
@@ -77,6 +86,7 @@ public class CafeApp {
         sc.close();
     }
 
+    //フリードリンク
     public static void freeDrink(Scanner sc) {
         System.out.println("--- 5ポイントありがとうございます。無料ドリンクを選んでください ---");
         System.out.println("[1] カフェラテ 450円");
@@ -95,16 +105,15 @@ public class CafeApp {
             MenuItem freeItem = null;
             switch (input) {
                 case 1:
-                    freeItem = new MenuItem(1, "カフェラテ", 450, "drink");
-                    break;
+                    freeItem = new MenuItem(1, "カフェラテ", 450, "drink");break;
                 case 2:
-                    freeItem = new MenuItem(2, "アールグレイ", 400, "drink");
-                    break;
+                    freeItem = new MenuItem(2, "アールグレイ", 400, "drink");break;
                 default:
                     System.out.println("メニューの商品番号を入力してください");
                     continue;
             }
 
+          //カート内に同じ無料ドリンクがあれば、無料の個数を1増やす
             boolean found = false;
             for (CartItem ci : cart) {
                 if (ci.getItem().getId() == freeItem.getId()) {
@@ -114,6 +123,8 @@ public class CafeApp {
                 }
             }
 
+          //カートに該当の無料ドリンクがなければ、新しくCartItemを作成し、
+          //有料分のカウントを1減らし、無料分を1増やしてカートに追加する
             if (!found) {
                 CartItem freeCartItem = new CartItem(freeItem);
                 freeCartItem.countDown();
@@ -126,6 +137,7 @@ public class CafeApp {
         }
     }
 
+  //注文内容の表示（無料分も含めて表示）、および合計金額（有料分のみ）を出力
     public static void printTotal() {
         int total = 0;
         System.out.println("--- 注文内容 ---");
